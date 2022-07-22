@@ -2,6 +2,7 @@
 #include <DxLib.h>
 #include "MouseController.h"
 #include "UnitMng.h"
+#include "Utility/BoardDate.h"
 
 PlayerHand::PlayerHand()
 {
@@ -84,6 +85,7 @@ bool PlayerHand::CheckMove(void)
             lockTarget_ = false;
         }
     }
+
     return false;
 }
 
@@ -101,7 +103,7 @@ bool PlayerHand::CheckTaget(void)
     {
         return false;
     }
-    Unit target = date_[tpos.y][tpos.x];
+    Unit target = BoardDate::GetBoard()[tpos.y][tpos.x];
     if (target <= Unit::non && target >= Unit::bPawn1)
     {
         return false;

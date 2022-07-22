@@ -5,7 +5,7 @@
 #include "Vector2.h"
 
 class UnitBase;
-using UNUB = std::unique_ptr<UnitBase>;
+using UNUB = std::shared_ptr<UnitBase>;
 class UnitBase
 {
 public:

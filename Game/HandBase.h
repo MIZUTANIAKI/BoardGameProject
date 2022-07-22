@@ -37,12 +37,6 @@ public:
 	virtual std::pair<Unit, Vector2> NextMove();
 
 	/// <summary>
-	/// 盤面データ貸与用
-	/// </summary>
-	/// <param name="date">盤面データ</param>
-	void SetDate(std::array<std::array<Unit, 8>, 8> date);
-
-	/// <summary>
 	/// 手種別取得
 	/// </summary>
 	/// <param name=""></param>
@@ -55,8 +49,6 @@ protected:
 	/// ID　種類
 	/// </summary>
 	HandName handID_;
-
-	std::array<std::array<Unit, 8>, 8> date_;
 	std::pair<Unit, Vector2> nextPos_;
 };
 

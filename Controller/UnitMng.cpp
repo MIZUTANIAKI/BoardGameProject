@@ -11,6 +11,17 @@ UnitMng::~UnitMng()
 {
 }
 
+void UnitMng::Update(void)
+{
+	for (const auto& dat : unitList_)
+	{
+		for (const auto& uni : dat.second)
+		{
+			uni->Update();
+		}
+	}
+}
+
 void UnitMng::Reset(void)
 {
 	unitList_.clear();
@@ -31,7 +42,10 @@ std::vector<UNUB>& UnitMng::GetUnitList(void)
 	std::vector<UNUB> tmpVec;
 	for (const auto& dat : unitList_)
 	{
-		tmpVec.emplace_back(dat.second);
+		for (const auto& uni : dat.second)
+		{
+			tmpVec.emplace_back(uni);
+		}
 	}
 	return tmpVec;
 	// TODO: return ステートメントをここに挿入します
@@ -39,10 +53,10 @@ std::vector<UNUB>& UnitMng::GetUnitList(void)
 
 void UnitMng::SetPlayer(std::vector<UNUB> vec)
 {
-	unitList_.try_emplace(true, std::move(vec));
+	//unitList_.try_emplace(true, std::move(vec));
 }
 
 void UnitMng::SetEnemy(std::vector<UNUB> vec)
 {
-	unitList_.try_emplace(false, std::move(vec));
+	//unitList_.try_emplace(false, std::move(vec));
 }

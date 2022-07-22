@@ -27,11 +27,6 @@ std::pair<Unit, Vector2> HandBase::NextMove()
 	return std::pair<Unit, Vector2>();
 }
 
-void HandBase::SetDate(std::array<std::array<Unit, 8>, 8> date)
-{
-	date_ = date;
-}
-
 HandName HandBase::GetHandID(void)
 {
 	return handID_;

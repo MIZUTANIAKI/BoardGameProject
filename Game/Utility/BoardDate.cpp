@@ -12,6 +12,11 @@ Unit BoardDate::GatDate(int& x, int& y)
 	return boardDate_[y][x];
 }
 
+std::array<std::array<Unit, 8>, 8> BoardDate::GetBoard()
+{
+	return boardDate_;
+}
+
 void BoardDate::SetDate(bool isPlayer, std::vector<int> date)
 {
 	int y = 0;

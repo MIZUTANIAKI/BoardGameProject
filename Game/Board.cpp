@@ -41,7 +41,7 @@ void Board::Move(Unit id, Vector2 pos)
 {
 	if (id >= Unit::bPawn1)
 	{
-		for (const auto& el : enemyunitList_)
+		for (const auto& el : UnitMng::GetEnemy())
 		{
 			if (el->GetUnitID() == id)
 			{
@@ -51,7 +51,7 @@ void Board::Move(Unit id, Vector2 pos)
 	}
 	else
 	{
-		for (const auto& pl : playerunitList_)
+		for (const auto& pl : UnitMng::GetPlayer())
 		{
 			if (pl->GetUnitID() == id)
 			{

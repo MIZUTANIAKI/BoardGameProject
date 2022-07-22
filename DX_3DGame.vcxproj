@@ -178,6 +178,7 @@
     <ClCompile Include="Game\CheckBoard.cpp" />
     <ClCompile Include="Game\PlayerHand.cpp" />
     <ClCompile Include="Game\UnitBase.cpp" />
+    <ClCompile Include="Game\Unit\Pawn.cpp" />
     <ClCompile Include="Game\Utility\BoardDate.cpp" />
     <ClCompile Include="Game\Utility\BoardDateList.cpp" />
     <ClCompile Include="Game\Utility\Unit.cpp" />
@@ -204,6 +205,7 @@
     <ClInclude Include="Game\CheckBoard.h" />
     <ClInclude Include="Game\PlayerHand.h" />
     <ClInclude Include="Game\UnitBase.h" />
+    <ClInclude Include="Game\Unit\Pawn.h" />
     <ClInclude Include="Game\Utility\BoardDate.h" />
     <ClInclude Include="Game\Utility\BoardDateList.h" />
     <ClInclude Include="Game\Utility\Unit.h" />
