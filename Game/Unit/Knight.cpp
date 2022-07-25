@@ -1,4 +1,6 @@
 #include "Knight.h"
+#include "../Utility/BoardDate.h"
+#include <array>
 
 Knight::Knight()
 {
@@ -18,5 +20,8 @@ void Knight::Draw(void)
 
 std::vector<Vector2> Knight::GetMovableDestination(void)
 {
-	return std::vector<Vector2>();
+    std::vector<Vector2> movePos;
+    auto date = BoardDate::GetBoard();
+    Vector2 pos = pos_ / 60;
+    return movePos;
 }
