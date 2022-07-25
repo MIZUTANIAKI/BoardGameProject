@@ -4,7 +4,7 @@ class Pawn :
     public UnitBase
 {
 public:
-	Pawn();
+	Pawn(Unit id) :UnitBase(id) {};
 	~Pawn();
 
 	/// <summary>

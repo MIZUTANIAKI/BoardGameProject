@@ -2,10 +2,6 @@
 #include "../Utility/BoardDate.h"
 #include <array>
 
-Queen::Queen()
-{
-}
-
 Queen::~Queen()
 {
 }
@@ -124,65 +120,41 @@ std::vector<Vector2> Queen::GetMovableDestination(void)
         //¶
         if (pos.x - 1 >= 0)
         {
-            if (date[pos.y - 1][pos.x - 1] == Unit::non)
-            {
-                movePos.emplace_back(pos.x - 1, pos.y - 1);
-            }
+            movePos.emplace_back(pos.x - 1, pos.y - 1);
         }
         //’†‰›
-        if (date[pos.y - 1][pos.x] == Unit::non)
-        {
-            movePos.emplace_back(pos.x, pos.y - 1);
-        }
+        movePos.emplace_back(pos.x, pos.y - 1);
         //‰E
         if (pos.x + 1 < 8)
         {
-            if (date[pos.y - 1][pos.x + 1] == Unit::non)
-            {
-                movePos.emplace_back(pos.x + 1, pos.y - 1);
-            }
+            movePos.emplace_back(pos.x + 1, pos.y - 1);
         }
     }
     //’†
         //¶
     if (pos.x - 1 >= 0)
     {
-        if (date[pos.y][pos.x - 1] == Unit::non)
-        {
-            movePos.emplace_back(pos.x - 1, pos.y);
-        }
+        movePos.emplace_back(pos.x - 1, pos.y);
     }
         //‰E
     if (pos.x + 1 < 8)
     {
-        if (date[pos.y][pos.x + 1] == Unit::non)
-        {
-            movePos.emplace_back(pos.x + 1, pos.y);
-        }
+        movePos.emplace_back(pos.x + 1, pos.y);
     }
-    //ã
+    //‰º
     if (pos.y + 1 < 8)
     {
         //¶
         if (pos.x - 1 >= 0)
         {
-            if (date[pos.y + 1][pos.x - 1] == Unit::non)
-            {
-                movePos.emplace_back(pos.x - 1, pos.y + 1);
-            }
+            movePos.emplace_back(pos.x - 1, pos.y + 1);
         }
         //’†‰›
-        if (date[pos.y + 1][pos.x] == Unit::non)
-        {
-            movePos.emplace_back(pos.x, pos.y + 1);
-        }
+        movePos.emplace_back(pos.x, pos.y + 1);
         //‰E
         if (pos.x + 1 < 8)
         {
-            if (date[pos.y + 1][pos.x + 1] == Unit::non)
-            {
-                movePos.emplace_back(pos.x + 1, pos.y + 1);
-            }
+            movePos.emplace_back(pos.x + 1, pos.y + 1);
         }
     }
     return movePos;

@@ -4,7 +4,7 @@ class King :
 	public UnitBase
 {
 public:
-	King();
+	King(Unit id) :UnitBase(id) {};
 	~King();
 
 	/// <summary>

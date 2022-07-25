@@ -4,7 +4,7 @@ class Queen :
     public UnitBase
 {
 public:
-	Queen();
+	Queen(Unit id) :UnitBase(id) {};
 	~Queen();
 
 	/// <summary>

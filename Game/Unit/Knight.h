@@ -5,7 +5,7 @@ class Knight :
 	public UnitBase
 {
 public:
-	Knight();
+	Knight(Unit id) :UnitBase(id) {};
 	~Knight();
 
 	/// <summary>

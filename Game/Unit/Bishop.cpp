@@ -2,10 +2,6 @@
 #include "../Utility/BoardDate.h"
 #include <array>
 
-Bishop::Bishop()
-{
-}
-
 Bishop::~Bishop()
 {
 }

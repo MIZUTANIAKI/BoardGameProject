@@ -4,7 +4,7 @@ class Rook :
     public UnitBase
 {
 public:
-	Rook();
+	Rook(Unit id) :UnitBase(id) {};
 	~Rook();
 
 	/// <summary>

@@ -4,7 +4,7 @@ class Bishop :
     public UnitBase
 {
 public:
-	Bishop();
+	Bishop(Unit id) :UnitBase(id) {};
 	~Bishop();
 
 	/// <summary>
