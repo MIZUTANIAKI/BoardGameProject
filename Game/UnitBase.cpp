@@ -42,7 +42,7 @@ int UnitBase::GetHP(void)
 
 Vector2 UnitBase::GetPos()
 {
-	return pos_;
+	return pos_ / 60;
 }
 
 void UnitBase::SetPos(Vector2& pos)

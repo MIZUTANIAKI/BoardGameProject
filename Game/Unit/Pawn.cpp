@@ -19,7 +19,7 @@ std::vector<Vector2> Pawn::GetMovableDestination(void)
     std::vector<Vector2> movePos;
     auto date = BoardDate::GetBoard();
     Vector2 pos = pos_ / 60;
-    if (pos.y - 1 >= 0)
+    if (pos.y - 1 >= 0 && (unitID_ >= Unit::wPawn1 && unitID_ <= Unit::wPawn8))
     {
         if (date[pos.y - 1][pos.x] == Unit::non)
         {
@@ -37,6 +37,27 @@ std::vector<Vector2> Pawn::GetMovableDestination(void)
             if (date[pos.y - 1][pos.x + 1] != Unit::non)
             {
                 movePos.emplace_back(pos.x + 1, pos.y - 1);
+            }
+        }
+    }
+    if (pos.y + 1 < 8 && (unitID_ >= Unit::bPawn1 && unitID_ <= Unit::bPawn8))
+    {
+        if (date[pos.y + 1][pos.x] == Unit::non)
+        {
+            movePos.emplace_back(pos.x, pos.y + 1);
+        }
+        if (pos.x - 1 >= 0)
+        {
+            if (date[pos.y + 1][pos.x - 1] != Unit::non)
+            {
+                movePos.emplace_back(pos.x - 1, pos.y + 1);
+            }
+        }
+        if (pos.x + 1 < 8)
+        {
+            if (date[pos.y + 1][pos.x + 1] != Unit::non)
+            {
+                movePos.emplace_back(pos.x + 1, pos.y + 1);
             }
         }
     }
