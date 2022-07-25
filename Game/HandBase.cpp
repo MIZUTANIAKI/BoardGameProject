@@ -3,10 +3,6 @@
 HandBase::HandBase()
 {
 	handID_ = HandName::Non;
-	for (int i = 0; i < 64; i++)
-	{
-		date_[i / 8][i % 8] = Unit::non;
-	}
 }
 
 HandBase::~HandBase()

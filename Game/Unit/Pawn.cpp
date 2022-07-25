@@ -36,7 +36,7 @@ std::vector<Vector2> Pawn::GetMovableDestination(void)
                 movePos.emplace_back(pos.x - 1, pos.y - 1);
             }
         }
-        if (pos.x + 1 >= 0)
+        if (pos.x + 1 < 8)
         {
             if (date[pos.y - 1][pos.x + 1] != Unit::non)
             {

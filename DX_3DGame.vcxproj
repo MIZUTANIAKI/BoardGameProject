@@ -178,7 +178,12 @@
     <ClCompile Include="Game\CheckBoard.cpp" />
     <ClCompile Include="Game\PlayerHand.cpp" />
     <ClCompile Include="Game\UnitBase.cpp" />
+    <ClCompile Include="Game\Unit\Bishop.cpp" />
+    <ClCompile Include="Game\Unit\King.cpp" />
+    <ClCompile Include="Game\Unit\Knight.cpp" />
     <ClCompile Include="Game\Unit\Pawn.cpp" />
+    <ClCompile Include="Game\Unit\Queen.cpp" />
+    <ClCompile Include="Game\Unit\Rook.cpp" />
     <ClCompile Include="Game\Utility\BoardDate.cpp" />
     <ClCompile Include="Game\Utility\BoardDateList.cpp" />
     <ClCompile Include="Game\Utility\Unit.cpp" />
@@ -205,7 +210,12 @@
     <ClInclude Include="Game\CheckBoard.h" />
     <ClInclude Include="Game\PlayerHand.h" />
     <ClInclude Include="Game\UnitBase.h" />
+    <ClInclude Include="Game\Unit\Bishop.h" />
+    <ClInclude Include="Game\Unit\King.h" />
+    <ClInclude Include="Game\Unit\Knight.h" />
     <ClInclude Include="Game\Unit\Pawn.h" />
+    <ClInclude Include="Game\Unit\Queen.h" />
+    <ClInclude Include="Game\Unit\Rook.h" />
     <ClInclude Include="Game\Utility\BoardDate.h" />
     <ClInclude Include="Game\Utility\BoardDateList.h" />
     <ClInclude Include="Game\Utility\Unit.h" />
