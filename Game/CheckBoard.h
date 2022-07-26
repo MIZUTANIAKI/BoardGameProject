@@ -4,8 +4,10 @@
 
 class CheckBoard
 {
-	std::vector<Vector2> playerAtackPos_;
-	std::vector<Vector2> enemyAtackPos_;
+	static std::vector<Vector2> playerAtackPos_;
+	static std::vector<Vector2> enemyAtackPos_;
+	static bool checkPlayerKing_;
+	static bool checkEnemyKing_;
 public:
 	CheckBoard();
 	~CheckBoard();
@@ -14,13 +16,13 @@ public:
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns></returns>
-	std::vector<Vector2> GetPlayerAtackPos(void);
+	static std::vector<Vector2> GetPlayerAtackPos(void);
 	/// <summary>
 	/// 敵が攻撃中のマスを取得
 	/// </summary>
 	/// <param name=""></param>
 	/// <returns></returns>
-	std::vector<Vector2> GetEnemyAtackPos(void);
+	static std::vector<Vector2> GetEnemyAtackPos(void);
 
 	/// <summary>
 	/// 盤面がロックされている状態かどうか
@@ -42,7 +44,17 @@ public:
 	/// </summary>
 	/// <param name=""></param>
 	void CheckAtackPos(void);
-	void SetAtackPos(std::vector<UNUB>& units, std::vector<Vector2>& atackpos);
+
+	static int KingCheckNow(bool isPlayer = false);
+	static void SetCheckKing(bool now, bool isPlayer = false);
 private:
+	/// <summary>
+	/// 攻撃しているマスを取得してセット
+	/// </summary>
+	/// <param name="units"></param>
+	/// <param name="atackpos"></param>
+	void SetAtackPos(std::vector<UNUB>& units, std::vector<Vector2>& atackpos);
+	void CheckPawn(Vector2& pos, const UNUB& unit, std::vector<Vector2>& atackpos);
+	void CheckKing(Vector2& pos, std::vector<Vector2>& atackpos);
 };
 
