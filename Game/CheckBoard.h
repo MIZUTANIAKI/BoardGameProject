@@ -42,7 +42,7 @@ public:
 	/// </summary>
 	/// <param name=""></param>
 	void CheckAtackPos(void);
-	void SetAtackPos(std::vector<UNUB>& units, std::vector<Vector2>& atackpos)
+	void SetAtackPos(std::vector<UNUB>& units, std::vector<Vector2>& atackpos);
 private:
 };
 

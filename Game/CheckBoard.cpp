@@ -65,3 +65,4 @@ void CheckBoard::SetAtackPos(std::vector<UNUB>& units, std::vector<Vector2>& ata
 		}
 	}
 }
+
