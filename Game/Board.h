@@ -5,6 +5,7 @@
 #include "vector2.h"
 #include <vector>
 #include <memory>
+#include "HandBase.h"
 
 class Board
 {
@@ -17,5 +18,8 @@ private:
 	void Move(Unit id, Vector2 pos);
 	std::unique_ptr<BoardDate> boardDate_;
 	std::unique_ptr<BoardDateList> boardDateList_;
+	std::unique_ptr<HandBase> handForPlayer_;
+	std::unique_ptr<HandBase> handForEnemy_;
+	bool isPlayerTurnF_;
 };
 
