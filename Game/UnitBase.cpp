@@ -65,6 +65,13 @@ std::vector<Vector2> UnitBase::GetMovableDestination(void)
 	return std::vector<Vector2>();
 }
 
+void UnitBase::KillUnit(void)
+{
+	hp_ = 0;
+	PlayAnim((int)UnitAnimation::del);
+}
+
 void UnitBase::PlayAnim(int num)
 {
+	animID_ = static_cast<UnitAnimation>(num);
 }

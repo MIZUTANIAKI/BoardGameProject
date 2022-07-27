@@ -39,6 +39,28 @@ void BoardDate::SetDate(bool isPlayer, std::vector<int> date)
 	}
 }
 
+void BoardDate::SetDate(std::array<std::array<Unit, 8>, 8> dat)
+{
+	boardDate_ = dat;
+}
+
+void BoardDate::SetDate(Vector2 from, Vector2 to)
+{
+
+	if (from.x >= 8 || to.x >= 8)
+		return;
+	if (from.y >= 8 || to.y >= 8)
+		return;
+	if (from.x < 0 || to.x < 0)
+		return;
+	if (from.y < 0 || to.y < 0)
+		return;
+
+	boardDate_[to.y][to.x] = boardDate_[from.y][from.x];
+	boardDate_[from.y][from.x] = Unit::non;
+
+}
+
 BoardDate::BoardDate()
 {
 }

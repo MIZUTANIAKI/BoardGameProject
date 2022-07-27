@@ -49,7 +49,7 @@ void CheckBoard::CheckAtackPos(void)
 	SetAtackPos(units,enemyAtackPos_);
 }
 
-int CheckBoard::KingCheckNow(bool isPlayer)
+bool CheckBoard::KingCheckNow(bool isPlayer)
 {
     if (isPlayer)
     {

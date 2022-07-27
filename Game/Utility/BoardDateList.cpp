@@ -38,6 +38,11 @@ bool BoardDateList::CheckDate()
 	return false;
 }
 
+void BoardDateList::SetDate(std::array<std::array<Unit, 8>, 8> dat)
+{
+	boardDateList_.emplace_back(dat);
+}
+
 BoardDateList::BoardDateList()
 {
 	for (auto& date : boardDateList_)

@@ -45,7 +45,17 @@ public:
 	/// <param name=""></param>
 	void CheckAtackPos(void);
 
-	static int KingCheckNow(bool isPlayer = false);
+	/// <summary>
+	/// きんぐがチェックされているか
+	/// </summary>
+	/// <param name="isPlayer">true = プレイヤー側</param>
+	/// <returns></returns>
+	static bool KingCheckNow(bool isPlayer = false);
+	/// <summary>
+	/// キングがチェックされているかどうかを設定
+	/// </summary>
+	/// <param name="now">状態</param>
+	/// <param name="isPlayer">true = プレイヤー側</param>
 	static void SetCheckKing(bool now, bool isPlayer = false);
 private:
 	/// <summary>

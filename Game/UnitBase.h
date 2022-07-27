@@ -62,6 +62,8 @@ public:
 	/// <param name=""></param>
 	/// <returns>移動可能先のリスト　からの場合は無し</returns>
 	virtual std::vector<Vector2> GetMovableDestination(void);
+
+	void KillUnit(void);
 private:
 	/// <summary>
 	/// アニメーション再生
