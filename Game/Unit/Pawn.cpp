@@ -12,6 +12,11 @@ void Pawn::Update()
 
 void Pawn::Draw(void)
 {
+    if (IsKillUnit())
+    {
+        return;
+    }
+    DxLib::DrawBox(pos_.x, pos_.y, pos_.x + 60, pos_.y + 60, 0x000000, false);
 }
 
 std::vector<Vector2> Pawn::GetMovableDestination(void)

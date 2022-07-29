@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include "Vector2.h"
+#include "UnitBase.h"
 
 class CheckBoard
 {

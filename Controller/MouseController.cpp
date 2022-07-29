@@ -26,7 +26,7 @@ void MouseController::Update()
 
 Vector2 MouseController::GetMousePos()
 {
-	return Vector2();
+	return mousePos_;
 }
 
 bool MouseController::GetMouseFlag(int num)

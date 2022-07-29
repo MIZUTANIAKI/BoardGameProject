@@ -6,6 +6,6 @@ class BuildUnit
 public:
 	BuildUnit();
 	~BuildUnit();
-	static UNUB Build(Unit id);
+	static UNUB Build(Unit id, Vector2& pos);
 };
 

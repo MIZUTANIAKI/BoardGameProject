@@ -13,6 +13,11 @@ void King::Update()
 
 void King::Draw(void)
 {
+    if (IsKillUnit())
+    {
+        return;
+    }
+    DxLib::DrawBox(pos_.x, pos_.y, pos_.x + 60, pos_.y + 60, 0x0000ff, false);
 }
 
 std::vector<Vector2> King::GetMovableDestination(void)

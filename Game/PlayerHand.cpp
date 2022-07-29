@@ -11,6 +11,7 @@ PlayerHand::PlayerHand()
     lockUnit_ = Unit::non;
     nextPos_.first=Unit::non;
     nextPos_.second = Vector2(0, 0);
+    movePosList_.clear();
 }
 
 PlayerHand::~PlayerHand()
@@ -19,23 +20,26 @@ PlayerHand::~PlayerHand()
 
 bool PlayerHand::Update()
 {
-    if (lpMouseMng.GetMouseTrg(MOUSE_INPUT_LEFT))
-    {
-        if (!lockTarget_)
-        {
-            return CheckTaget();
-        }
-        else
-        {
-            return CheckMove();
-        }
-    }
+
     if (lpMouseMng.GetMouseTrg(MOUSE_INPUT_RIGHT))
     {
         lockTarget_ = false;
         nextPos_.first = Unit::non;
         nextPos_.second = Vector2(0, 0);
+        movePosList_.clear();
     }
+    if (!lockTarget_)
+    {
+        if (lpMouseMng.GetMouseTrg(MOUSE_INPUT_LEFT))
+        {
+            return CheckTaget();
+        }
+    }
+    else
+    {
+        return CheckMove();
+    }
+
     return false;
 }
 
@@ -45,7 +49,7 @@ void PlayerHand::Draw()
     {
         for (const auto& pos : movePosList_)
         {
-            DxLib::DrawBox(pos.x, pos.y, pos.x + 60, pos.y + 60, 0xff0000, true);
+            DxLib::DrawBox(pos.x*60, pos.y*60, pos.x*60 + 60, pos.y*60 + 60, 0xff0000, true);
         }
     }
 }
@@ -71,6 +75,12 @@ bool PlayerHand::CheckMove(void)
             if (movePosList_.empty())
             {
                 lockTarget_ = false;
+                nextPos_.first = Unit::non;
+                nextPos_.second = Vector2(0, 0);
+                return false;
+            }
+            if (!lpMouseMng.GetMouseTrg(MOUSE_INPUT_LEFT))
+            {
                 return false;
             }
             for (const auto& pos : movePosList_)
@@ -82,7 +92,6 @@ bool PlayerHand::CheckMove(void)
                     return true;
                 }
             }
-            lockTarget_ = false;
         }
     }
 

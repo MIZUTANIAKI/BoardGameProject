@@ -14,6 +14,7 @@ public:
 	~Board();
 
 	void Update();
+	void Draw();
 private:
 	void Move(Unit id, Vector2 pos);
 	std::unique_ptr<BoardDate> boardDate_;

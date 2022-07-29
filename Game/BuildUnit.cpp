@@ -1,4 +1,11 @@
 #include "BuildUnit.h"
+#include "Unit/Pawn.h"
+#include "Unit/Knight.h"
+#include "Unit/Rook.h"
+#include "Unit/Bishop.h"
+#include "Unit/Queen.h"
+#include "Unit/King.h"
+
 
 BuildUnit::BuildUnit()
 {
@@ -8,77 +15,48 @@ BuildUnit::~BuildUnit()
 {
 }
 
-UNUB BuildUnit::Build(Unit id)
+UNUB BuildUnit::Build(Unit id, Vector2& pos)
 {
-	return UNUB();
-	switch (id)
+	if (id <= Unit::non || id > Unit::bKing)
 	{
-	case Unit::non:
 		return UNUB();
-		break;
-	case Unit::wPawn1:
-		break;
-	case Unit::wPawn2:
-		break;
-	case Unit::wPawn3:
-		break;
-	case Unit::wPawn4:
-		break;
-	case Unit::wPawn5:
-		break;
-	case Unit::wPawn6:
-		break;
-	case Unit::wPawn7:
-		break;
-	case Unit::wPawn8:
-		break;
-	case Unit::wKnight1:
-		break;
-	case Unit::wKnight2:
-		break;
-	case Unit::wBishop1:
-		break;
-	case Unit::wBishop2:
-		break;
-	case Unit::wRook1:
-		break;
-	case Unit::wRook2:
-		break;
-	case Unit::wQueen:
-		break;
-	case Unit::wKing:
-		break;
-	case Unit::bPawn1:
-		break;
-	case Unit::bPawn2:
-		break;
-	case Unit::bPawn3:
-		break;
-	case Unit::bPawn4:
-		break;
-	case Unit::bPawn5:
-		break;
-	case Unit::bPawn6:
-		break;
-	case Unit::bPawn7:
-		break;
-	case Unit::bPawn8:
-		break;
-	case Unit::bKnight1:
-		break;
-	case Unit::bKnight2:
-		break;
-	case Unit::bBishop1:
-		break;
-	case Unit::bBishop2:
-		break;
-	case Unit::bRook1:
-		break;
-	case Unit::bRook2:
-		break;
-	case Unit::bKing:
-		break;
-	default:
-		break;
 	}
+	if ((id >= Unit::wPawn1 && id <= Unit::wPawn8) || ((id >= Unit::bPawn1 && id <= Unit::bPawn8)))
+	{
+		auto unit = std::make_shared<Pawn>(id);
+		unit->SetPos(pos);
+		return std::move(unit);
+	}
+	if (id == Unit::wKnight1 || id == Unit::wKnight2 || id == Unit::bKnight1 || id == Unit::bKnight2)
+	{
+		auto unit = std::make_shared<Knight>(id);
+		unit->SetPos(pos);
+		return std::move(unit);
+	}
+	if (id == Unit::wRook1 || id == Unit::wRook2 || id == Unit::bRook1 || id == Unit::bRook2)
+	{
+		auto unit = std::make_shared<Rook>(id);
+		unit->SetPos(pos);
+		return std::move(unit);
+	}
+	if (id == Unit::wBishop1 || id == Unit::wBishop2 || id == Unit::bBishop1 || id == Unit::bBishop2)
+	{
+		auto unit = std::make_shared<Bishop>(id);
+		unit->SetPos(pos);
+		return std::move(unit);
+	}
+	if (id == Unit::wQueen || id == Unit::bQueen)
+	{
+		auto unit = std::make_shared<Queen>(id);
+		unit->SetPos(pos);
+		return std::move(unit);
+	}
+	if (id == Unit::wKing || id == Unit::bKing)
+	{
+		auto unit = std::make_shared<King>(id);
+		unit->SetPos(pos);
+		return std::move(unit);
+	}
+	return UNUB();
 }
+

@@ -12,6 +12,11 @@ void Rook::Update()
 
 void Rook::Draw(void)
 {
+    if (IsKillUnit())
+    {
+        return;
+    }
+    DxLib::DrawBox(pos_.x, pos_.y, pos_.x + 60, pos_.y + 60, 0xff0000, false);
 }
 
 std::vector<Vector2> Rook::GetMovableDestination(void)

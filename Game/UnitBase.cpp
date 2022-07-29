@@ -47,7 +47,7 @@ Vector2 UnitBase::GetPos()
 
 void UnitBase::SetPos(Vector2& pos)
 {
-	pos_.Move(pos);
+	pos_ = std::move(pos *= 60);
 }
 
 void UnitBase::SetLock(bool isLock)
@@ -74,4 +74,13 @@ void UnitBase::KillUnit(void)
 void UnitBase::PlayAnim(int num)
 {
 	animID_ = static_cast<UnitAnimation>(num);
+}
+
+bool UnitBase::IsKillUnit(void)
+{
+	if (hp_ <= 0)
+	{
+		return true;
+	}
+	return false;
 }

@@ -12,6 +12,11 @@ void Queen::Update()
 
 void Queen::Draw(void)
 {
+    if (IsKillUnit())
+    {
+        return;
+    }
+    DxLib::DrawBox(pos_.x, pos_.y, pos_.x + 60, pos_.y + 60, 0x00ff00, false);
 }
 
 std::vector<Vector2> Queen::GetMovableDestination(void)

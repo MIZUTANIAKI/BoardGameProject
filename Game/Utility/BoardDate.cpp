@@ -1,4 +1,5 @@
 #include "BoardDate.h"
+#include "UnitMng.h"
 
 std::array<std::array<Unit, 8>, 8> BoardDate::boardDate_;
 
@@ -55,10 +56,20 @@ void BoardDate::SetDate(Vector2 from, Vector2 to)
 		return;
 	if (from.y < 0 || to.y < 0)
 		return;
-
+	if (boardDate_[to.y][to.x] != Unit::non)
+	{
+		auto& unitlist = UnitMng::GetUnitList();
+		for (const auto& unit : unitlist)
+		{
+			if (unit->GetUnitID() == boardDate_[to.y][to.x])
+			{
+				unit->KillUnit();
+			}
+		}
+	}
 	boardDate_[to.y][to.x] = boardDate_[from.y][from.x];
 	boardDate_[from.y][from.x] = Unit::non;
-
+	
 }
 
 BoardDate::BoardDate()

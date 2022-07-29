@@ -12,6 +12,11 @@ void Bishop::Update()
 
 void Bishop::Draw(void)
 {
+    if (IsKillUnit())
+    {
+        return;
+    }
+    DxLib::DrawBox(pos_.x, pos_.y, pos_.x + 60, pos_.y + 60, 0xff00ff, false);
 }
 
 std::vector<Vector2> Bishop::GetMovableDestination(void)

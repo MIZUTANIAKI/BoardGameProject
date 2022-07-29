@@ -12,6 +12,11 @@ void Knight::Update()
 
 void Knight::Draw(void)
 {
+    if (IsKillUnit())
+    {
+        return;
+    }
+    DxLib::DrawBox(pos_.x, pos_.y, pos_.x + 60, pos_.y + 60, 0xffff00, false);
 }
 
 std::vector<Vector2> Knight::GetMovableDestination(void)

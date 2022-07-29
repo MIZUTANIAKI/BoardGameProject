@@ -1,6 +1,7 @@
 #include "UnitMng.h"
 
 std::map<bool, std::vector<UNUB>> UnitMng::unitList_;
+std::vector<UNUB> UnitMng::allVector_;
 
 UnitMng::UnitMng()
 {
@@ -39,24 +40,24 @@ std::vector<UNUB>& UnitMng::GetEnemy(void)
 
 std::vector<UNUB>& UnitMng::GetUnitList(void)
 {
-	std::vector<UNUB> tmpVec;
+	
+	allVector_.clear();
 	for (const auto& dat : unitList_)
 	{
 		for (const auto& uni : dat.second)
 		{
-			tmpVec.emplace_back(uni);
+			allVector_.emplace_back(uni);
 		}
 	}
-	return tmpVec;
-	// TODO: return ステートメントをここに挿入します
+	return allVector_;
 }
 
 void UnitMng::SetPlayer(std::vector<UNUB> vec)
 {
-	//unitList_.try_emplace(true, std::move(vec));
+	unitList_.try_emplace(true, std::move(vec));
 }
 
 void UnitMng::SetEnemy(std::vector<UNUB> vec)
 {
-	//unitList_.try_emplace(false, std::move(vec));
+	unitList_.try_emplace(false, std::move(vec));
 }

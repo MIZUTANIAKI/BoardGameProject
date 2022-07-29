@@ -1,5 +1,7 @@
 #pragma once
 #include "BaseScene.h"
+#include "Board.h"
+#include "UnitBase.h"
 
 class ExampleMap;
 
@@ -13,5 +15,6 @@ public:
 	void Draw(void)override;
 	SCN_ID GetSCNID_(void)override;
 private:
+	std::unique_ptr<Board> board_;
 };
 

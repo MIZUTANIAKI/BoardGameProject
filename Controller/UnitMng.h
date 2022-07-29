@@ -6,6 +6,7 @@
 class UnitMng
 {
 	static std::map<bool, std::vector<UNUB>> unitList_;
+	static std::vector<UNUB> allVector_;
 public:
 	UnitMng();
 	~UnitMng();

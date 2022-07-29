@@ -3,6 +3,7 @@
 #include <memory>
 #include <vector>
 #include "Vector2.h"
+#include <DxLib.h>
 
 class UnitBase;
 using UNUB = std::shared_ptr<UnitBase>;
@@ -96,5 +97,7 @@ protected:
 	/// ロック　移動が可能かどうか
 	/// </summary>
 	bool lock_;
+
+	bool IsKillUnit(void);
 };
 
