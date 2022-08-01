@@ -44,7 +44,7 @@ public:
 	/// 攻撃情報の更新
 	/// </summary>
 	/// <param name=""></param>
-	void CheckAtackPos(void);
+	static void CheckAtackPos(void);
 
 	/// <summary>
 	/// きんぐがチェックされているか
@@ -64,8 +64,8 @@ private:
 	/// </summary>
 	/// <param name="units"></param>
 	/// <param name="atackpos"></param>
-	void SetAtackPos(std::vector<UNUB>& units, std::vector<Vector2>& atackpos);
-	void CheckPawn(Vector2& pos, const UNUB& unit, std::vector<Vector2>& atackpos);
-	void CheckKing(Vector2& pos, std::vector<Vector2>& atackpos);
+	static void SetAtackPos(std::vector<UNUB>& units, std::vector<Vector2>& atackpos);
+	static void CheckPawn(Vector2& pos, const UNUB& unit, std::vector<Vector2>& atackpos);
+	static void CheckKing(Vector2& pos, std::vector<Vector2>& atackpos);
 };
 

@@ -3,9 +3,10 @@
 #include <DxLib.h>
 #include "UnitMng.h"
 #include "PlayerHand.h"
+#include "Player2Hand.h"
 #include "BuildUnit.h"
 
-Board::Board()
+Board::Board(int playmode)
 {
 	boardDate_ = std::make_unique<BoardDate>();
 	boardDateList_ = std::make_unique<BoardDateList>();
@@ -49,7 +50,17 @@ Board::Board()
 	UnitMng::SetEnemy(std::move(enemyunitList_));
 	isPlayerTurnF_ = true;
 	handForPlayer_ = std::make_unique<PlayerHand>();
-	handForEnemy_ = std::make_unique<HandBase>();
+
+	if (playmode == 0)
+	{
+		handForEnemy_ = std::make_unique<Player2Hand>();
+	}
+	else
+	{
+		handForEnemy_ = std::make_unique<HandBase>();
+	}
+	
+	checkBoard_ = std::make_unique<CheckBoard>();
 }
 
 Board::~Board()
@@ -67,6 +78,16 @@ void Board::Update()
 		}
 		auto tmpMoveUnitDate = handForPlayer_->NextMove();
 		Move(tmpMoveUnitDate.first, tmpMoveUnitDate.second);
+		checkBoard_->CheckAtackPos();
+		std::vector<std::pair<Unit, Vector2>>tmpVec;
+		auto& dat = UnitMng::GetEnemy();
+		for (const auto& d : dat)
+		{
+			if (!d->GetLock())
+				tmpVec.emplace_back(d->GetUnitID(), d->GetPos());
+		}
+		boardDate_->SetNewTarn(tmpVec,false);
+		isPlayerTurnF_ = false;
 	}
 	else
 	{
@@ -76,6 +97,16 @@ void Board::Update()
 		}
 		auto tmpMoveUnitDate = handForEnemy_->NextMove();
 		Move(tmpMoveUnitDate.first, tmpMoveUnitDate.second);
+		checkBoard_->CheckAtackPos();
+		std::vector<std::pair<Unit, Vector2>>tmpVec;
+		auto& dat = UnitMng::GetPlayer();
+		for (const auto& d : dat)
+		{
+			if (!d->GetLock())
+				tmpVec.emplace_back(d->GetUnitID(), d->GetPos());
+		}
+		boardDate_->SetNewTarn(tmpVec, true);
+		isPlayerTurnF_ = true;
 	}
 }
 
@@ -89,6 +120,10 @@ void Board::Draw()
 	if (isPlayerTurnF_)
 	{
 		handForPlayer_->Draw();
+	}
+	else
+	{
+		handForEnemy_->Draw();
 	}
 }
 

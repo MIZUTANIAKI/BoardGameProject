@@ -59,6 +59,8 @@ bool operator ==(Unit u1, Unit u2);
 
 Unit operator +(Unit u1, Unit u2);
 
+Unit operator +(Unit u1, int num);
+
 Unit operator -(Unit u1, Unit u2);
 
 Unit operator ++(Unit u1);

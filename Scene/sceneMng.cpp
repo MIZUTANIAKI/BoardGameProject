@@ -16,7 +16,7 @@
 SceneMng* SceneMng::sInstance = nullptr;
 
 
-SceneMng::SceneMng() :ScreenSize{ 1280,720 }
+SceneMng::SceneMng() :ScreenSize{ 60 * 8 + 1,60 * 8 + 1/*1280,720*/ }
 {
 	SetWindowText("起動"); 
 
@@ -108,7 +108,7 @@ bool SceneMng::SysInit(void)
 	SetDrawScreen(DX_SCREEN_BACK);
 	SetCreate3DSoundFlag(true);
 	SetFontSize(60);
-	SetBackgroundColor(100, 255, 255);
+	SetBackgroundColor(50, 50, 50);
 	SetUseZBufferFlag(TRUE);
 	SetCameraNearFar(0.1f, 1000.0f);
 	//SetMouseDispFlag(false);	//マウスを非表示に

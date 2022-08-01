@@ -40,6 +40,16 @@ Unit operator+(Unit u1, Unit u2)
 	return static_cast<Unit>(rtnnum);
 }
 
+Unit operator+(Unit u1, int num)
+{
+	int rtnnum = static_cast<int>(u1) + num;
+	if (rtnnum > static_cast<int>(Unit::bKing))
+	{
+		rtnnum -= static_cast<int>(Unit::bKing);
+	}
+	return static_cast<Unit>(rtnnum);
+}
+
 Unit operator-(Unit u1, Unit u2)
 {
 	int rtnnum = static_cast<int>(u1) - static_cast<int>(u2);

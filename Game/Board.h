@@ -6,11 +6,12 @@
 #include <vector>
 #include <memory>
 #include "HandBase.h"
+#include "CheckBoard.h"
 
 class Board
 {
 public:
-	Board();
+	Board(int playmode);
 	~Board();
 
 	void Update();
@@ -21,6 +22,7 @@ private:
 	std::unique_ptr<BoardDateList> boardDateList_;
 	std::unique_ptr<HandBase> handForPlayer_;
 	std::unique_ptr<HandBase> handForEnemy_;
+	std::unique_ptr<CheckBoard> checkBoard_;
 	bool isPlayerTurnF_;
 };
 

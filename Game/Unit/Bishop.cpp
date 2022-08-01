@@ -16,7 +16,7 @@ void Bishop::Draw(void)
     {
         return;
     }
-    DxLib::DrawBox(pos_.x, pos_.y, pos_.x + 60, pos_.y + 60, 0xff00ff, false);
+    DxLib::DrawBox(pos_.x, pos_.y, pos_.x + 60, pos_.y + 60, 0xff00ff, true);
 }
 
 std::vector<Vector2> Bishop::GetMovableDestination(void)
@@ -26,15 +26,19 @@ std::vector<Vector2> Bishop::GetMovableDestination(void)
     Vector2 pos = pos_ / 60;
     Vector2 nowpos = pos;
     //‰Eã
-    while (nowpos.x + 1 >= 0 && nowpos.y - 1 >= 0)
+    while (nowpos.x + 1 < 8 && nowpos.y - 1 >= 0)
     {
         nowpos.x += 1;
         nowpos.y -= 1;
-        movePos.emplace_back(nowpos.x, nowpos.y);
         if (date[nowpos.y][nowpos.x] != Unit::non)
         {
+            if ((unitID_ <= Unit::wKing && date[nowpos.y][nowpos.x] > Unit::wKing) || (unitID_ > Unit::wKing && date[nowpos.y][nowpos.x] <= Unit::wKing))
+            {
+                movePos.emplace_back(nowpos.x, nowpos.y);
+            }
             break;
         }
+        movePos.emplace_back(nowpos.x, nowpos.y);
     }
     nowpos = pos;
     //‰E‰º
@@ -42,11 +46,15 @@ std::vector<Vector2> Bishop::GetMovableDestination(void)
     {
         nowpos.x += 1;
         nowpos.y += 1;
-        movePos.emplace_back(nowpos.x, nowpos.y);
         if (date[nowpos.y][nowpos.x] != Unit::non)
         {
+            if ((unitID_ <= Unit::wKing && date[nowpos.y][nowpos.x] > Unit::wKing) || (unitID_ > Unit::wKing && date[nowpos.y][nowpos.x] <= Unit::wKing))
+            {
+                movePos.emplace_back(nowpos.x, nowpos.y);
+            }
             break;
         }
+        movePos.emplace_back(nowpos.x, nowpos.y);
     }
     nowpos = pos;
     //¶‰º
@@ -54,11 +62,15 @@ std::vector<Vector2> Bishop::GetMovableDestination(void)
     {
         nowpos.x -= 1;
         nowpos.y += 1;
-        movePos.emplace_back(nowpos.x, nowpos.y);
         if (date[nowpos.y][nowpos.x] != Unit::non)
         {
+            if ((unitID_ <= Unit::wKing && date[nowpos.y][nowpos.x] > Unit::wKing) || (unitID_ > Unit::wKing && date[nowpos.y][nowpos.x] <= Unit::wKing))
+            {
+                movePos.emplace_back(nowpos.x, nowpos.y);
+            }
             break;
         }
+        movePos.emplace_back(nowpos.x, nowpos.y);
     }
     nowpos = pos;
     //¶ã
@@ -66,11 +78,15 @@ std::vector<Vector2> Bishop::GetMovableDestination(void)
     {
         nowpos.x -= 1;
         nowpos.y -= 1;
-        movePos.emplace_back(nowpos.x, nowpos.y);
         if (date[nowpos.y][nowpos.x] != Unit::non)
         {
+            if ((unitID_ <= Unit::wKing && date[nowpos.y][nowpos.x] > Unit::wKing) || (unitID_ > Unit::wKing && date[nowpos.y][nowpos.x] <= Unit::wKing))
+            {
+                movePos.emplace_back(nowpos.x, nowpos.y);
+            }
             break;
         }
+        movePos.emplace_back(nowpos.x, nowpos.y);
     }
     return movePos;
 }

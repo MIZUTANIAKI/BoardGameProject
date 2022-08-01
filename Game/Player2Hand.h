@@ -4,12 +4,12 @@
 #include <Vector>
 #include "Utility/Unit.h"
 
-class PlayerHand :
+class Player2Hand :
     public HandBase
 {
 public:
-	PlayerHand();
-	virtual ~PlayerHand();
+	Player2Hand();
+	virtual ~Player2Hand();
 
 	/// <summary>
 	/// XVˆ—
@@ -32,7 +32,7 @@ public:
 	std::pair<Unit, Vector2> NextMove() override;
 private:
 	bool lockTarget_;
-	Unit lockUnit_; 
+	Unit lockUnit_;
 	std::vector<Vector2> movePosList_;
 
 	/// <summary>

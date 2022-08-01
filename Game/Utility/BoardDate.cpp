@@ -56,6 +56,62 @@ void BoardDate::SetDate(Vector2 from, Vector2 to)
 		return;
 	if (from.y < 0 || to.y < 0)
 		return;
+	bool delFlag = false;
+	CheckKillUnit(to);
+	if ((boardDate_[from.y][from.x] <= Unit::wPawn8 && from.y == 6))
+	{
+		if (from.y - to.y >= 2)
+		{
+			if (CheckKillUnit(Vector2(from.x, from.y - 1)))
+				delFlag = true;
+			boardDate_[from.y - 1][from.x] = boardDate_[from.y][from.x];
+		}
+	}
+	else if (boardDate_[from.y][from.x] >= Unit::wPawn1 && boardDate_[from.y][from.x] <= Unit::bPawn8 && from.y == 1)
+	{
+		if (to.y - from.y >= 2)
+		{
+			if (CheckKillUnit(Vector2(from.x, from.y + 1)))
+				delFlag = true;
+			boardDate_[from.y + 1][from.x] = boardDate_[from.y][from.x];
+		}
+	}
+
+	if (delFlag)
+	{
+		DelUnitDate(boardDate_[to.y][to.x]);
+	}
+	boardDate_[to.y][to.x] = boardDate_[from.y][from.x];
+	boardDate_[from.y][from.x] = Unit::non;
+}
+
+void BoardDate::SetNewTarn(std::vector<std::pair<Unit, Vector2>> dat, bool isPlayer)
+{
+	if (isPlayer)
+	{
+		for (Unit i = Unit::wPawn1; i <= Unit::wKing; i = i + 1)
+		{
+			DelUnitDate(i);
+		}
+	}
+	else
+	{
+		for (Unit i = Unit::bPawn1; i >= Unit::wKing; i = i + 1)
+		{
+			DelUnitDate(i);
+		}
+	}
+	for (const auto& d : dat)
+	{
+		if (d.second.x >= 0 && d.second.x < 8 && d.second.y >= 0 && d.second.y < 8)
+		{
+			boardDate_[d.second.y][d.second.x] = d.first;
+		}
+	}
+}
+
+bool BoardDate::CheckKillUnit(Vector2 to)
+{
 	if (boardDate_[to.y][to.x] != Unit::non)
 	{
 		auto& unitlist = UnitMng::GetUnitList();
@@ -64,12 +120,27 @@ void BoardDate::SetDate(Vector2 from, Vector2 to)
 			if (unit->GetUnitID() == boardDate_[to.y][to.x])
 			{
 				unit->KillUnit();
+				return true;
+			}
+		}
+		return true;
+	}
+	return false;
+}
+
+void BoardDate::DelUnitDate(Unit id)
+{
+	for (int y = 0; y < 8; y++)
+	{
+		for (int x = 0; x < 8; x++)
+		{
+			if (boardDate_[y][x] == id)
+			{
+				boardDate_[y][x] = Unit::non;
 			}
 		}
 	}
-	boardDate_[to.y][to.x] = boardDate_[from.y][from.x];
-	boardDate_[from.y][from.x] = Unit::non;
-	
+
 }
 
 BoardDate::BoardDate()

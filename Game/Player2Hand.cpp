@@ -1,32 +1,32 @@
-#include "PlayerHand.h"
+#include "Player2Hand.h"
 #include <DxLib.h>
 #include "MouseController.h"
 #include "UnitMng.h"
 #include "Utility/BoardDate.h"
 #include "CheckBoard.h"
 
-PlayerHand::PlayerHand()
+Player2Hand::Player2Hand()
 {
     handID_ = HandName::Player;
     lockTarget_ = false;
     lockUnit_ = Unit::non;
-    nextPos_.first=Unit::non;
+    nextPos_.first = Unit::non;
     nextPos_.second = Vector2(0, 0);
     movePosList_.clear();
 }
 
-PlayerHand::~PlayerHand()
+Player2Hand::~Player2Hand()
 {
 }
 
-bool PlayerHand::Update()
+bool Player2Hand::Update()
 {
 
     if (lpMouseMng.GetMouseTrg(MOUSE_INPUT_RIGHT))
     {
         OutOfTarget();
     }
-    
+
     {
         if (lpMouseMng.GetMouseTrg(MOUSE_INPUT_LEFT))
         {
@@ -41,7 +41,7 @@ bool PlayerHand::Update()
     return false;
 }
 
-void PlayerHand::OutOfTarget()
+void Player2Hand::OutOfTarget()
 {
     lockTarget_ = false;
     nextPos_.first = Unit::non;
@@ -49,19 +49,19 @@ void PlayerHand::OutOfTarget()
     movePosList_.clear();
 }
 
-void PlayerHand::Draw()
+void Player2Hand::Draw()
 {
     if (lockTarget_)
     {
         for (const auto& pos : movePosList_)
         {
-            DxLib::DrawBox(pos.x*60, pos.y*60, pos.x*60 + 60, pos.y*60 + 60, 0xff0000, true);
-            DxLib::DrawLine(pos.x * 60+60, pos.y * 60, pos.x * 60, pos.y * 60 + 60, 0x000000,2);
+            DxLib::DrawBox(pos.x * 60, pos.y * 60, pos.x * 60 + 60, pos.y * 60 + 60, 0xff0000, true);
+            DxLib::DrawLine(pos.x * 60 + 60, pos.y * 60, pos.x * 60, pos.y * 60 + 60, 0x000000, 2);
         }
     }
 }
 
-bool PlayerHand::CheckMove(void)
+bool Player2Hand::CheckMove(void)
 {
     Vector2 tpos = lpMouseMng.GetMousePos();
     tpos /= 60;
@@ -81,8 +81,8 @@ bool PlayerHand::CheckMove(void)
         }
         return false;
     }
-    auto& playerlist = UnitMng::GetPlayer();
-    for (auto& uni : playerlist)
+    auto playerlist = UnitMng::GetEnemy();
+    for (const auto& uni : playerlist)
     {
         if (uni->GetUnitID() == lockUnit_)
         {
@@ -102,18 +102,18 @@ bool PlayerHand::CheckMove(void)
             {
                 if (pos == tpos)
                 {
-                    if (CheckBoard::KingCheckNow(true))
+                    if (CheckBoard::KingCheckNow(false))
                     {
                         Vector2 tmpPos = uni->GetPos();
                         auto tmpBoard = BoardDate::GetBoard();
                         BoardDate::SetDate(uni->GetPos(), tpos);
                         uni->SetPos(tpos);
                         CheckBoard::CheckAtackPos();
-                        if (lockUnit_ != Unit::wKing)
+                        if (lockUnit_ != Unit::bKing)
                         {
                             for (auto& tuni : playerlist)
                             {
-                                if (tuni->GetUnitID() == Unit::wKing)
+                                if (tuni->GetUnitID() == Unit::bKing)
                                 {
                                     tuni->GetMovableDestination();
                                     break;
@@ -126,7 +126,7 @@ bool PlayerHand::CheckMove(void)
                         }
                         BoardDate::SetDate(tmpBoard);
                         uni->SetPos(tmpPos);
-                        if (CheckBoard::KingCheckNow(true))
+                        if (CheckBoard::KingCheckNow(false))
                         {
                             return false;
                         }
@@ -142,7 +142,7 @@ bool PlayerHand::CheckMove(void)
     return false;
 }
 
-bool PlayerHand::CheckTaget(void)
+bool Player2Hand::CheckTaget(void)
 {
     nextPos_.first = Unit::non;
     nextPos_.second = Vector2(0, 0);
@@ -159,7 +159,7 @@ bool PlayerHand::CheckTaget(void)
         return false;
     }
     //target‚ÌUnit‚ğ“®‚©‚·‚½‚ß‚ÉA“®‚¢‚Ä‚à‚æ‚¢‚©“™‚ğ”»’èB
-    auto playerlist = UnitMng::GetPlayer();
+    auto playerlist = UnitMng::GetEnemy();
 
     for (const auto& uni : playerlist)
     {
@@ -177,7 +177,7 @@ bool PlayerHand::CheckTaget(void)
     return false;
 }
 
-std::pair<Unit, Vector2> PlayerHand::NextMove()
+std::pair<Unit, Vector2> Player2Hand::NextMove()
 {
     auto pos = nextPos_;
     OutOfTarget();

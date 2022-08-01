@@ -42,7 +42,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
-    <PlatformToolset>v143</PlatformToolset>
+    <PlatformToolset>v142</PlatformToolset>
     <CharacterSet>MultiByte</CharacterSet>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
@@ -189,6 +189,7 @@
     <ClCompile Include="Game\Utility\Unit.cpp" />
     <ClCompile Include="Game\HandBase.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Game\Player2Hand.cpp" />
     <ClCompile Include="Scene\BaseScene.cpp" />
     <ClCompile Include="Scene\GameScene.cpp" />
     <ClCompile Include="Scene\sceneMng.cpp" />
@@ -220,6 +221,7 @@
     <ClInclude Include="Game\Utility\BoardDateList.h" />
     <ClInclude Include="Game\Utility\Unit.h" />
     <ClInclude Include="Game\HandBase.h" />
+    <ClInclude Include="Game\Player2Hand.h" />
     <ClInclude Include="Scene\BaseScene.h" />
     <ClInclude Include="Scene\GameScene.h" />
     <ClInclude Include="Scene\sceneMng.h" />

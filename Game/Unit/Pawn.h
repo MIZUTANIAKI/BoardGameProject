@@ -4,7 +4,7 @@ class Pawn :
     public UnitBase
 {
 public:
-	Pawn(Unit id) :UnitBase(id) {};
+	Pawn(Unit id);
 	~Pawn();
 
 	/// <summary>
@@ -26,5 +26,10 @@ public:
 	/// <param name=""></param>
 	/// <returns>移動可能先のリスト　からの場合は無し</returns>
 	std::vector<Vector2> GetMovableDestination(void) override;
+	void MoveQueen(Vector2& pos, std::array<std::array<Unit, 8Ui64>, 8Ui64>& date, std::vector<Vector2>& movePos);
+	void MovePawn(Vector2& pos, std::array<std::array<Unit, 8Ui64>, 8Ui64>& date, std::vector<Vector2>& movePos);
+
+private:
+	int moveMode_;	//移動モード
 };
 

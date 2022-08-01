@@ -26,20 +26,26 @@ public:
 	/// </summary>
 	/// <param name="isPlayer"></param>
 	/// <param name="date"></param>
-	void SetDate(bool isPlayer, std::vector<int> date);
+	static void SetDate(bool isPlayer, std::vector<int> date);
 	/// <summary>
 	/// データ設定 ボード本体上書き
 	/// </summary>
 	/// <param name="dat"></param>
-	void SetDate(std::array<std::array<Unit, 8>, 8> dat);
+	static void SetDate(std::array<std::array<Unit, 8>, 8> dat);
 	/// <summary>
 	/// データ設定　ユニット移動用/移動元を移動先へ
 	/// </summary>
 	/// <param name="from"></param>
 	/// <param name="to"></param>
-	void SetDate(Vector2 from, Vector2 to);
+	static void SetDate(Vector2 from, Vector2 to);
+
+	void SetNewTarn(std::vector<std::pair<Unit, Vector2>>dat,bool isPlayer);
+
 
 	BoardDate();
 	~BoardDate();
+private:
+	static bool CheckKillUnit(Vector2 to);
+	static void DelUnitDate(Unit id);
 };
 

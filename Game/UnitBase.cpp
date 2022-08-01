@@ -68,6 +68,7 @@ std::vector<Vector2> UnitBase::GetMovableDestination(void)
 void UnitBase::KillUnit(void)
 {
 	hp_ = 0;
+	lock_ = true;
 	PlayAnim((int)UnitAnimation::del);
 }
 
