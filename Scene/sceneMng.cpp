@@ -4,19 +4,17 @@
 #include <map>
 #include <DxLib.h>
 #include "sceneMng.h"
-#include "GameScene.h"
 #include "CronoMng.h"
 #include "FPSKeeper.h"
 #include "ObjMng.h"
 #include "ImageMng.h"
 #include "SoundMng.h"
 #include "MouseController.h"
-
+#include "TitleScene.h"
 
 SceneMng* SceneMng::sInstance = nullptr;
 
-
-SceneMng::SceneMng() :ScreenSize{ 60 * 8 + 1,60 * 8 + 1/*1280,720*/ }
+SceneMng::SceneMng() :ScreenSize{ 1280,720 }
 {
 	SetWindowText("起動"); 
 
@@ -39,18 +37,16 @@ SceneMng::~SceneMng()
 void SceneMng::Draw(void)
 {
 	DxLib::ClsDrawScreen();
+	DxLib::ClsDrawScreen();
 	lpobjlMng.DrawNaw();
-
-
+	lpImglMng.DrawNaw();
 	activeScene_->Draw();
-	
 	DxLib::ScreenFlip();
 }
 
 void SceneMng::Run(void)
 {
 	SysInit();
-	activeScene_ = std::make_unique<GameScene>();
 
 	LPCSTR fontpath = "font/YuseiMagic-Regular.ttf";
 	if (AddFontResourceEx(fontpath, FR_PRIVATE, NULL) <= 0)
@@ -62,7 +58,8 @@ void SceneMng::Run(void)
 
 
 	FPSKeeper* fps = new FPSKeeper();
-
+	activeScene_ = std::make_unique<TitleScene>();
+	
 	while (ProcessMessage() == 0&&CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{
 		fps->Update();
@@ -98,7 +95,7 @@ bool SceneMng::SysInit(void)
 {
 	SetDXArchiveKeyString("DoAkathukiSoftWere");
 
-	SetLightEnable(FALSE);
+	SetLightEnable(true);
 
 	SetChangeScreenModeGraphicsSystemResetFlag(FALSE);
 	SetUseZBuffer3D(TRUE);
@@ -108,9 +105,9 @@ bool SceneMng::SysInit(void)
 	SetDrawScreen(DX_SCREEN_BACK);
 	SetCreate3DSoundFlag(true);
 	SetFontSize(60);
-	SetBackgroundColor(50, 50, 50);
+	SetBackgroundColor(130, 130, 130);
 	SetUseZBufferFlag(TRUE);
-	SetCameraNearFar(0.1f, 1000.0f);
+	SetCameraNearFar(0.1f, 5000.0f);
 	//SetMouseDispFlag(false);	//マウスを非表示に
 	SetLightDifColor(GetColorF(1.0f, 1.0f, 1.0f, 0.0f));
 	SetLightAmbColor(GetColorF(1.0f, 1.0f, 1.0f, 0.0f));
@@ -118,8 +115,7 @@ bool SceneMng::SysInit(void)
 	SetFogEnable(TRUE);
 	SetFogStartEnd(1500.0f, 40000.0f);
 
-	SetCameraPositionAndTarget_UpVecY(VGet(0.0f, 0.0f, -1000.0f), VGet(0.0f, 0.0f, 0.0f));
-
+	//SetCameraPositionAndTarget_UpVecY(VGet(0.0f, 0.0f, -1600.0f), VGet(0.0f, 0.0f, 0.0f));
 	return true;
 }
 

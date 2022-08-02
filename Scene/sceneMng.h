@@ -52,6 +52,5 @@ private:
 	void Draw(void);
 	SceneMng();
 	~SceneMng(); 
-
 };
 

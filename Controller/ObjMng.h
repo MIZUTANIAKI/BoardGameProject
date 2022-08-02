@@ -1,4 +1,5 @@
 #pragma once
+#include <map>
 //#define CPU_MAX 9
 
 
@@ -86,11 +87,11 @@ public:
 	/// <summary>
 	/// 3Dモデルデータを読み込む。
 	/// 返り値はID。描画させたいときに必要。
-	/// 必ず返り値を保存すること。
+	/// 
 	/// 引数はディレクトリ[MV1Date]に格納してある前提なのでMV1Dateは省略
 	/// </summary>
 	/// <param name="fileName">3Dモデルファイル名</param>
-	/// <returns></returns>
+	/// <returns>ID</returns>
 	int LoadModel(std::string fileName);
 
 	/// <summary>
@@ -117,15 +118,22 @@ public:
 	/// <returns></returns>
 	int CopyModel(int mv1);
 
-private:
-	static ObjMng* sInstance;
-
 	/// <summary>
 	/// IDからモデルハンドルを取得する。
 	/// </summary>
 	/// <param name="mv1"></param>
 	/// <returns></returns>
 	int GetModelHandle(int mv1);
+
+	/// <summary>
+	/// 描画本体
+	/// </summary>
+	/// <param name="handl"></param>
+	void DrawSystem(int handl);
+
+private:
+	static ObjMng* sInstance;
+
 
 	std::map<int,int> mv1List_;						//保存しているモデルデータ　ID：ハンドル
 

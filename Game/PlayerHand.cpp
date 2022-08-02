@@ -102,36 +102,33 @@ bool PlayerHand::CheckMove(void)
             {
                 if (pos == tpos)
                 {
-                    if (CheckBoard::KingCheckNow(true))
+                    Vector2 tmpPos = uni->GetPos();
+                    auto tmpBoard = BoardDate::GetBoard();
+                    BoardDate::SetDate(uni->GetPos(), tpos);
+                    uni->SetPos(tpos);
+                    CheckBoard::CheckAtackPos();
+                    if (lockUnit_ != Unit::wKing)
                     {
-                        Vector2 tmpPos = uni->GetPos();
-                        auto tmpBoard = BoardDate::GetBoard();
-                        BoardDate::SetDate(uni->GetPos(), tpos);
-                        uni->SetPos(tpos);
-                        CheckBoard::CheckAtackPos();
-                        if (lockUnit_ != Unit::wKing)
+                        for (auto& tuni : playerlist)
                         {
-                            for (auto& tuni : playerlist)
+                            if (tuni->GetUnitID() == Unit::wKing)
                             {
-                                if (tuni->GetUnitID() == Unit::wKing)
-                                {
-                                    tuni->GetMovableDestination();
-                                    break;
-                                }
+                                tuni->GetMovableDestination();
+                                break;
                             }
                         }
-                        else
-                        {
-                            uni->GetMovableDestination();
-                        }
-                        BoardDate::SetDate(tmpBoard);
-                        uni->SetPos(tmpPos);
-                        if (CheckBoard::KingCheckNow(true))
-                        {
-                            return false;
-                        }
-                        CheckBoard::CheckAtackPos();
                     }
+                    else
+                    {
+                        uni->GetMovableDestination();
+                    }
+                    BoardDate::SetDate(tmpBoard);
+                    uni->SetPos(tmpPos);
+                    if (CheckBoard::KingCheckNow(true))
+                    {
+                        return false;
+                    }
+                    CheckBoard::CheckAtackPos();
                     nextPos_.first = lockUnit_;
                     nextPos_.second = pos;
                     return true;

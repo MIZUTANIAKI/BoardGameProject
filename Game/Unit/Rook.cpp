@@ -8,6 +8,7 @@ Rook::~Rook()
 
 void Rook::Update()
 {
+    //lpobjlMng.Setobjpos(modelID_, VGet(pos_.x + 30, pos_.y + 30, 0));
 }
 
 void Rook::Draw(void)
@@ -16,7 +17,10 @@ void Rook::Draw(void)
     {
         return;
     }
+    //DxLib::DrawTriangle3D(VGet(pos_.x, pos_.y, 0), VGet(pos_.x + 60, pos_.y + 60, 0), VGet(pos_.x, pos_.y + 60, 0), 0xff0000, true);
+    //DxLib::DrawTriangle3D(VGet(pos_.x, pos_.y, 0), VGet(pos_.x + 60, pos_.y, 0), VGet(pos_.x + 60, pos_.y + 60, 0), 0xff0000, true);
     DxLib::DrawBox(pos_.x, pos_.y, pos_.x + 60, pos_.y + 60, 0xff0000, true);
+    //lpobjlMng.DrawSystem(lpobjlMng.GetModelHandle(modelID_));
 }
 
 std::vector<Vector2> Rook::GetMovableDestination(void)

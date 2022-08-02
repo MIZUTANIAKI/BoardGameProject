@@ -2,8 +2,10 @@
 #include "Utility/Unit.h"
 #include <memory>
 #include <vector>
+#include <string>
 #include "Vector2.h"
 #include <DxLib.h>
+#include "ObjMng.h"
 
 class UnitBase;
 using UNUB = std::shared_ptr<UnitBase>;
@@ -97,6 +99,10 @@ protected:
 	/// ロック　移動が可能かどうか
 	/// </summary>
 	bool lock_;
+	/// <summary>
+	/// モデルデータのID
+	/// </summary>
+	int modelID_;
 
 	bool IsKillUnit(void);
 };

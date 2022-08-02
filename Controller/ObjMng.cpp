@@ -15,7 +15,7 @@ void ObjMng::DrawNaw(void)
 	//MV1SetSemiTransDrawMode(DX_SEMITRANSDRAWMODE_ALWAYS);
 	for (auto dQue : drawList_)
 	{
-		DxLib::MV1DrawModel(dQue);
+		DrawSystem(dQue);
 	}
 	
 	//MV1SetSemiTransDrawMode(DX_SEMITRANSDRAWMODE_SEMITRANS_ONLY);
@@ -59,11 +59,15 @@ void ObjMng::SetScale(int mv1, VECTOR scale)
 
 int ObjMng::LoadModel(std::string fileName)
 {
-	std::string tstr= "MV1Date/";
+	std::string tstr = "Resource\\MV1Date/";
 	tstr += fileName;
-	mv1List_.try_emplace(static_cast<int>(mv1List_.size()),MV1LoadModel(tstr.c_str()));
-
-	return static_cast<int>(mv1List_.size()) - 1;
+	int id = MV1LoadModel(tstr.c_str());
+	if (id != -1)
+	{
+		mv1List_.try_emplace(static_cast<int>(mv1List_.size()), id);
+		return static_cast<int>(mv1List_.size()) - 1;
+	}
+	return -1;
 }
 
 void ObjMng::DeleteModel(int mv1)
@@ -87,8 +91,13 @@ void ObjMng::ReSetModelDate(void)
 
 int ObjMng::CopyModel(int mv1)
 {
-	mv1List_.try_emplace(static_cast<int>(mv1List_.size()),MV1DuplicateModel(GetModelHandle(mv1)));
-	return static_cast<int>(mv1List_.size()) - 1;
+	int id = GetModelHandle(mv1);
+	if (id != -1)
+	{
+		mv1List_.try_emplace(static_cast<int>(mv1List_.size()), MV1DuplicateModel(id));
+		return static_cast<int>(mv1List_.size()) - 1;
+	}
+	return -1;
 }
 
 int ObjMng::GetModelHandle(int mv1)
@@ -109,6 +118,17 @@ int ObjMng::GetModelHandle(int mv1)
 	else
 	{
 		return -1;
+	}
+}
+
+void ObjMng::DrawSystem(int handl)
+{
+	int meshNum = MV1GetMeshNum(handl);
+
+	// メッシュの数だけループ
+	for (int i = meshNum - 1; i >= 0; i--)
+	{
+		DxLib::MV1DrawMesh(handl, i);
 	}
 }
 

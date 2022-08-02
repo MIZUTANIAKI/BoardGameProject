@@ -1,4 +1,5 @@
 #include "UnitBase.h"
+#include "WFUtility.h"
 
 UnitBase::UnitBase()
 {
@@ -7,6 +8,8 @@ UnitBase::UnitBase()
 	attack_ = 1;
 	animID_ = UnitAnimation::idle;
 	lock_ = false;
+	modelID_ = lpobjlMng.CopyModel(0);
+	MV1SetRotationXYZ(lpobjlMng.GetModelHandle(modelID_), VGet(WFUtility::DegToRad(-110.0f), WFUtility::DegToRad(0.0f), WFUtility::DegToRad(180.0f)));
 }
 
 UnitBase::UnitBase(Unit id)
@@ -16,6 +19,16 @@ UnitBase::UnitBase(Unit id)
 	attack_ = 1;
 	animID_ = UnitAnimation::idle;
 	lock_ = false;
+	modelID_ = lpobjlMng.CopyModel(0);
+	if (id <= Unit::wKing)
+	{
+		MV1SetRotationXYZ(lpobjlMng.GetModelHandle(modelID_), VGet(WFUtility::DegToRad(-90.0f), WFUtility::DegToRad(0.0f), WFUtility::DegToRad(0.0f)));
+	}
+	else
+	{
+		MV1SetRotationXYZ(lpobjlMng.GetModelHandle(modelID_), VGet(WFUtility::DegToRad(-90.0f), WFUtility::DegToRad(0.0f), WFUtility::DegToRad(180.0f)));
+	}
+	MV1SetScale(lpobjlMng.GetModelHandle(modelID_), VGet(4.5, 5, 5));
 }
 
 UnitBase::~UnitBase()

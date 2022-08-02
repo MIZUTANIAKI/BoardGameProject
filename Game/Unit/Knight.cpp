@@ -8,6 +8,7 @@ Knight::~Knight()
 
 void Knight::Update()
 {
+    //lpobjlMng.Setobjpos(modelID_, VGet(pos_.x + 30, pos_.y + 30, 0));
 }
 
 void Knight::Draw(void)
@@ -16,7 +17,11 @@ void Knight::Draw(void)
     {
         return;
     }
+
     DxLib::DrawBox(pos_.x, pos_.y, pos_.x + 60, pos_.y + 60, 0xffff00, true);
+    //DxLib::DrawTriangle3D(VGet(pos_.x, pos_.y, 0), VGet(pos_.x + 60, pos_.y + 60, 0), VGet(pos_.x, pos_.y + 60, 0), 0xffff00, true);
+    //DxLib::DrawTriangle3D(VGet(pos_.x, pos_.y, 0), VGet(pos_.x + 60, pos_.y, 0), VGet(pos_.x + 60, pos_.y + 60, 0), 0xffff00, true);
+    //lpobjlMng.DrawSystem(lpobjlMng.GetModelHandle(modelID_));
 }
 
 std::vector<Vector2> Knight::GetMovableDestination(void)

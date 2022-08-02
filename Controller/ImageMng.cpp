@@ -93,7 +93,7 @@ int ImageMng::GetGraphHandle(std::string id)
 {
 	if (imgList_.find(id) == imgList_.end())
 	{
-		std::string tstr = "resource\\img/";
+		std::string tstr = "Resource\\img/";
 		tstr += id;
 		imgList_.try_emplace(id, DxLib::LoadGraph(tstr.c_str()));
 	}
